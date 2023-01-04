@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "52817147789",
+    "project_id": "parked-793e0",
+    "storage_bucket": "parked-793e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52817147789:android:1e06d121038d292b06afc4",
+        "android_client_info": {
+          "package_name": "com.Parked.riderapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "52817147789-05l66ontm5q4lmm8m5k2v2vgp8pn116i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7EXo-yYfG-d3mWvsXLg8gxLYhuMpoeG8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "52817147789-05l66ontm5q4lmm8m5k2v2vgp8pn116i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
