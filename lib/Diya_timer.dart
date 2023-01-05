@@ -1,31 +1,36 @@
 import 'dart:core';
 import 'package:time_range_picker/time_range_picker.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_database/firebase_database.dart';
 import "package:flutter/material.dart";
-import 'package:rider_app/AllScreens/loginScreen.dart';
+// import 'package:rider_app/AllScreens/loginScreen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:rider_app/AllScreens/mainscreen.dart';
-import 'package:rider_app/Allwidgets/progressDialog.dart';
-import 'package:rider_app/main.dart';
-class TimerScreen extends StatefulWidget {
+//  import 'package:rider_app/AllScreens/mainscreen.dart';
+// import 'package:rider_app/Allwidgets/progressDialog.dart';
+// import 'package:rider_app/main.dart';
+import 'main.dart';
+import 'variables.dart';
+import 'count2.dart';
+
+class TimerScreenS extends StatefulWidget {
   static const String idScreen = "register";
 
   @override
-  State<TimerScreen> createState() => _TimerScreenState();
+  State<TimerScreenS> createState() => TimerScreenState();
 }
 
-class _TimerScreenState extends State<TimerScreen> {
-  late int timeDiff;
-  TimeOfDay _startTime = TimeOfDay.now();
-  TimeOfDay _endTime =
+class TimerScreenState extends State<TimerScreenS> {
+
+  // late int timeDiff;
+  TimeOfDay startTime = TimeOfDay.now();
+  TimeOfDay endTime =
   TimeOfDay.fromDateTime(DateTime.now().add(const Duration(hours: 3)));
   bool On=false;
 
   // ignore: deprecated_member_use
-  final dbR = FirebaseDatabase.instance.reference();
+  //final dbR = FirebaseDatabase.instance.reference();
 
   TextEditingController nameTextEditingController = TextEditingController();
 
@@ -45,19 +50,19 @@ class _TimerScreenState extends State<TimerScreen> {
           child: Column(
             children: [
               const Divider(),
-              Text(
-                'As a regular widget:',
-                style: Theme.of(context).textTheme.headline6,
-                textAlign: TextAlign.center,
-              ),
+              // Text(
+              //   'As a regular widget:',
+              //   style: Theme.of(context).textTheme.headline6,
+              //   textAlign: TextAlign.center,
+              // ),
               const SizedBox(
                 height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text("Start: ${_startTime.format(context)}"),
-                  Text("End: ${_endTime.format(context)}"),
+                  Text("Start: ${startTime.format(context)}"),
+                  Text("End: ${endTime.format(context)}"),
                 ],
               ),
               SizedBox(
@@ -74,8 +79,8 @@ class _TimerScreenState extends State<TimerScreen> {
                     ClockLabel.fromTime(
                         time: const TimeOfDay(hour: 18, minute: 0), text: "Go Home")
                   ],
-                  start: _startTime,
-                  end: _endTime,
+                  start: startTime,
+                  end: endTime,
                   ticks: 8,
                   strokeColor: Theme.of(context).primaryColor.withOpacity(0.5),
                   ticksColor: Theme.of(context).primaryColor,
@@ -83,12 +88,12 @@ class _TimerScreenState extends State<TimerScreen> {
                   padding: 60,
                   onStartChange: (start) {
                     setState(() {
-                      _startTime = start;
+                      startTime = start;
                     });
                   },
                   onEndChange: (end) {
                     setState(() {
-                      _endTime = end;
+                      endTime = end;
                     });
                   },
                 ),
@@ -98,6 +103,12 @@ class _TimerScreenState extends State<TimerScreen> {
                 padding: EdgeInsets.all(20.0),
                 child: Column(
                   children: [
+                    // Container(
+                    //   child: Text('$_startTime'),
+                    // ),
+                    // Container(
+                    //   child: Text('$_endTime'),
+                    // ),
                     SizedBox(height: 30.0,),
                     ElevatedButton(
                       style: ButtonStyle(
@@ -127,36 +138,21 @@ class _TimerScreenState extends State<TimerScreen> {
                   ],
                 ),
               ),
+
               ElevatedButton(
                 onPressed: () {
                   bool result;
                   TimeOfDay currentTime= TimeOfDay.now();
                   int currentTimeInt = (currentTime.hour * 60 + currentTime.minute) * 60;
-                  int startTimeInt = (_startTime.hour * 60 + _startTime.minute) * 60;
-                  int endTimeInt = (_endTime.hour * 60 + _endTime.minute) * 60;
+                  int startTimeInt = (startTime.hour * 60 + startTime.minute) * 60;
+                  int endTimeInt = (endTime.hour * 60 + endTime.minute) * 60;
                   timeDiff = (endTimeInt - startTimeInt);
                   print(timeDiff);
-                  if(currentTimeInt>=startTimeInt){
-                    if(currentTimeInt<=endTimeInt){
-                      dbR.child("Light").set({"Switch":!On});
-                      setState((){
-                        On= !On;
 
-                      });
-
-                    }
-
-
-                  }
-                  /*
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, LoginScreen.idScreen, (route) => false);*/
-                },
-
-                child: Text(
-                    "Already have an account? Login Here"
-                ),
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const CountdownTimerDemo()),);
+                }, child: Text("Confirm"),
               ),
+
 
 
             ],
@@ -166,50 +162,50 @@ class _TimerScreenState extends State<TimerScreen> {
     );
   }
 
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+// final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  void registerNewUser(BuildContext context) async
-  {
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context)
-        {
-          return ProgressDialog(message: "Registering,Please Wait....",);
-        }
-    );
+// void registerNewUser(BuildContext context) async
+// {
+//   showDialog(
+//       context: context,
+//       barrierDismissible: false,
+//       builder: (BuildContext context)
+//       {
+//         return ProgressDialog(message: "Registering,Please Wait....",);
+//       }
+//   );
 
-    final User? firebaseUser = (await _firebaseAuth.createUserWithEmailAndPassword(
-        email: emailTextEditingController.text,
-        password: passwordTextEditingController.text).catchError((errMsg) {
-      Navigator.pop(context);
-      displayToastMessage("error:" + errMsg.toString(), context);
-    })).user;
-    if (firebaseUser != null) {
-
-      //save user info to database
-
-      Map userDataMap = {
-        "name": nameTextEditingController.text.trim(),
-        "email": emailTextEditingController.text.trim(),
-        "phone": phoneTextEditingController.text.trim(),
-      };
-      userRef.child(firebaseUser.uid).set(userDataMap);
-      displayToastMessage("account created successfully", context);
-      Navigator.pushNamedAndRemoveUntil(
-          context, MainScreen.idScreen, (route) => false);
-    }
-    else {
-      Navigator.pop(context);
-      displayToastMessage("acc not created", context);
-    }
-    // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-    // void registerNewUser(BuildContext context) async
-    // {
-    //   final F
-    // }
-  }
+// final User? firebaseUser = (await _firebaseAuth.createUserWithEmailAndPassword(
+//     email: emailTextEditingController.text,
+//     password: passwordTextEditingController.text).catchError((errMsg) {
+//   Navigator.pop(context);
+//   displayToastMessage("error:" + errMsg.toString(), context);
+// })).user;
+// if (firebaseUser != null) {
+//
+//   //save user info to database
+//
+//   Map userDataMap = {
+//     "name": nameTextEditingController.text.trim(),
+//     "email": emailTextEditingController.text.trim(),
+//     "phone": phoneTextEditingController.text.trim(),
+//   };
+//   userRef.child(firebaseUser.uid).set(userDataMap);
+//   displayToastMessage("account created successfully", context);
+//   Navigator.pushNamedAndRemoveUntil(
+//       context, MainScreen.idScreen, (route) => false);
+// }
+// else {
+//   Navigator.pop(context);
+//   displayToastMessage("acc not created", context);
+// }
+// final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+// void registerNewUser(BuildContext context) async
+// {
+//   final F
+// }
 }
+
 displayToastMessage(String message,BuildContext context)
 {
   Fluttertoast.showToast(msg: message);

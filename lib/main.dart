@@ -17,6 +17,7 @@ import 'package:rider_app/main.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:rider_app/timer.dart';
+import 'Diya_timer.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -35,13 +36,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: TimerScreen.idScreen,
+      initialRoute: TimerScreenS.idScreen,
       routes: {
         RegistrationScreen.idScreen:(context)=>RegistrationScreen(),
         LoginScreen.idScreen:(context)=>LoginScreen(),
         MainScreen.idScreen:(context)=>MainScreen(),
         TimerScreen.idScreen:(Context)=>TimerScreen(),
         MyHomePage.idScreen:(Context)=>MyHomePage(title: 'MyHomePage',),
+        TimerScreenS.idScreen:(Context)=>TimerScreenS(),
 
       },
       debugShowCheckedModeBanner: false,
