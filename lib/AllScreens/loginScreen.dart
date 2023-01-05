@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import "package:flutter/material.dart";
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rider_app/AllScreens/mainscreen.dart';
 import 'package:rider_app/AllScreens/registerationScreen.dart';
 import 'package:rider_app/Allwidgets/progressDialog.dart';
+import 'package:rider_app/Diya_timer.dart';
 import 'package:rider_app/main.dart';
 class LoginScreen extends StatelessWidget {
   static const String idScreen ="login";
@@ -66,7 +68,7 @@ class LoginScreen extends StatelessWidget {
                     ElevatedButton(
 
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.yellowAccent),
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.blueAccent),
 
                         shape: MaterialStatePropertyAll
                           (
@@ -103,7 +105,7 @@ class LoginScreen extends StatelessWidget {
               ),
               TextButton(
                 onPressed: (){
-                  Navigator.pushNamedAndRemoveUntil(context, RegistrationScreen.idScreen, (route) => false);
+                  Navigator.pushNamedAndRemoveUntil(context, RScreen.idScreen, (route) => false);
                 },
                 child: Text(
                   "Do not have an account? Create one"
@@ -142,7 +144,7 @@ class LoginScreen extends StatelessWidget {
       userRef.child(firebaseUser.uid).once().then((DataSnapshot){
         if(DataSnapshot!=null)
           {
-            Navigator.pushNamedAndRemoveUntil(context, MainScreen.idScreen, (route) => false);
+            Navigator.pushNamedAndRemoveUntil(context, TimerScreenS.idScreen, (route) => false);
             displayToastMessage("Login Successful", context);
           }
         else
@@ -160,4 +162,8 @@ class LoginScreen extends StatelessWidget {
     }
 
   }
+}
+displayToastMessage(String message,BuildContext context)
+{
+  Fluttertoast.showToast(msg: message);
 }

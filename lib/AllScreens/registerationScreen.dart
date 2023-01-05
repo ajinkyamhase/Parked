@@ -9,14 +9,15 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rider_app/AllScreens/mainscreen.dart';
 import 'package:rider_app/Allwidgets/progressDialog.dart';
 import 'package:rider_app/main.dart';
-class RegistrationScreen extends StatefulWidget {
-  static const String idScreen = "register";
+import 'package:rider_app/Allwidgets/Divider.dart';
+class RScreen extends StatefulWidget {
+  static const String idScreen = "r";
 
   @override
-  State<RegistrationScreen> createState() => _RegistrationScreenState();
+  State<RScreen> createState() => _RScreenState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen> {
+class _RScreenState extends State<RScreen> {
   bool On=false;
 
   // ignore: deprecated_member_use
@@ -116,7 +117,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     SizedBox(height: 30.0,),
                     ElevatedButton(
                       style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellowAccent),
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.blueAccent),
 
                           shape: MaterialStatePropertyAll
                             (
@@ -160,15 +161,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ],
                 ),
               ),
-              ElevatedButton(
+              TextButton(
                 onPressed: () {
-                  dbR.child("Light").set({"Switch":!On});
-                  setState((){
-                    On= !On;
 
-                  });/*
                   Navigator.pushNamedAndRemoveUntil(
-                      context, LoginScreen.idScreen, (route) => false);*/
+                      context, LoginScreen.idScreen, (route) => false);
                 },
 
                 child: Text(

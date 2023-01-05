@@ -5,23 +5,29 @@ import 'package:flutter/cupertino.dart';
 // import 'package:firebase_core/firebase_core.dart';
 // import 'package:firebase_database/firebase_database.dart';
 import "package:flutter/material.dart";
-// import 'package:rider_app/AllScreens/loginScreen.dart';
+import 'package:rider_app/AllScreens/loginScreen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-//  import 'package:rider_app/AllScreens/mainscreen.dart';
-// import 'package:rider_app/Allwidgets/progressDialog.dart';
-// import 'package:rider_app/main.dart';
+import 'package:rider_app/AllScreens/mainscreen.dart';
+import 'package:rider_app/Allwidgets/progressDialog.dart';
+import 'package:rider_app/main.dart';
 import 'main.dart';
 import 'variables.dart';
 import 'count2.dart';
+import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'dart:async';
+import 'package:rider_app/Allwidgets/Divider.dart';
 
 class TimerScreenS extends StatefulWidget {
   static const String idScreen = "register";
 
   @override
-  State<TimerScreenS> createState() => TimerScreenState();
+  _TimerScreenState createState() => _TimerScreenState();
 }
 
-class TimerScreenState extends State<TimerScreenS> {
+class _TimerScreenState extends State<TimerScreenS> {
+  GlobalKey<ScaffoldState> scaffoldkey = new GlobalKey<ScaffoldState>();
 
   // late int timeDiff;
   TimeOfDay startTime = TimeOfDay.now();
@@ -56,7 +62,7 @@ class TimerScreenState extends State<TimerScreenS> {
               //   textAlign: TextAlign.center,
               // ),
               const SizedBox(
-                height: 20,
+                height: 60,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -66,7 +72,7 @@ class TimerScreenState extends State<TimerScreenS> {
                 ],
               ),
               SizedBox(
-                height: 400,
+                height: 500,
                 child: TimeRangePicker(
                   hideButtons: true,
                   hideTimes: true,
@@ -85,7 +91,7 @@ class TimerScreenState extends State<TimerScreenS> {
                   strokeColor: Theme.of(context).primaryColor.withOpacity(0.5),
                   ticksColor: Theme.of(context).primaryColor,
                   labelOffset: 15,
-                  padding: 60,
+                  padding: 40,
                   onStartChange: (start) {
                     setState(() {
                       startTime = start;
@@ -100,7 +106,7 @@ class TimerScreenState extends State<TimerScreenS> {
               ),
 
               Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(5.0),
                 child: Column(
                   children: [
                     // Container(
@@ -109,32 +115,32 @@ class TimerScreenState extends State<TimerScreenS> {
                     // Container(
                     //   child: Text('$_endTime'),
                     // ),
-                    SizedBox(height: 30.0,),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellowAccent),
-
-                          shape: MaterialStatePropertyAll
-                            (
-                            RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(24.0),
-                            ),
-                          )
-                      ),
-                      child: Container(
-                        height: 40.0,
-                        child: Center(
-                          child: Text(
-                            "Create Account",
-                            style: TextStyle(
-                                fontSize: 18.0, fontFamily: "Brand Bold"),
-                          ),
-                        ),
-                      ),
-                      onPressed: () {
-                        print("login button clicked");
-                      },
-                    )
+                    SizedBox(height: 5.0,),
+                    // ElevatedButton(
+                    //   style: ButtonStyle(
+                    //       backgroundColor: MaterialStateProperty.all<Color>(Colors.blueAccent),
+                    //
+                    //       shape: MaterialStatePropertyAll
+                    //         (
+                    //         RoundedRectangleBorder(
+                    //           borderRadius: new BorderRadius.circular(24.0),
+                    //         ),
+                    //       )
+                    //   ),
+                    //   child: Container(
+                    //     height: 20.0,
+                    //     child: Center(
+                    //       child: Text(
+                    //         "Create Account",
+                    //         style: TextStyle(
+                    //             fontSize: 18.0, fontFamily: "Brand Bold"),
+                    //       ),
+                    //     ),
+                    //   ),
+                    //   onPressed: () {
+                    //     print("login button clicked");
+                    //   },
+                    // )
                   ],
                 ),
               ),
@@ -152,6 +158,13 @@ class TimerScreenState extends State<TimerScreenS> {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const CountdownTimerDemo()),);
                 }, child: Text("Confirm"),
               ),
+              ElevatedButton(
+                  onPressed:(){
+                    print("pressed");
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, LoginScreen.idScreen, (route) => false);
+                    // Navigator.push(context, MaterialPageRoute(builder: (context) => const CountdownTimerDemo()),)
+                  }, child: Text("Cancel/Signout"))
 
 
 
