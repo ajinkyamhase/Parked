@@ -29,6 +29,7 @@ class TimerScreenS extends StatefulWidget {
 class _TimerScreenState extends State<TimerScreenS> {
   GlobalKey<ScaffoldState> scaffoldkey = new GlobalKey<ScaffoldState>();
 
+
   // late int timeDiff;
   TimeOfDay startTime = TimeOfDay.now();
   TimeOfDay endTime =
@@ -150,12 +151,17 @@ class _TimerScreenState extends State<TimerScreenS> {
                   bool result;
                   TimeOfDay currentTime= TimeOfDay.now();
                   int currentTimeInt = (currentTime.hour * 60 + currentTime.minute) * 60;
-                  int startTimeInt = (startTime.hour * 60 + startTime.minute) * 60;
-                  int endTimeInt = (endTime.hour * 60 + endTime.minute) * 60;
+                  startTimeInt = (startTime.hour * 60 + startTime.minute) * 60;
+                  endTimeInt = (endTime.hour * 60 + endTime.minute) * 60;
                   timeDiff = (endTimeInt - startTimeInt);
-                  print(timeDiff);
-
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const CountdownTimerDemo()),);
+                  //print(timeDiff);
+                  if(startTimeInt >= currentTimeInt){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const CountdownTimerDemo()),);
+                  }
+                  else{
+                    print("Invalid Time");
+                    displayToastMessage("Please enter valid time", context);
+                  }
                 }, child: Text("Confirm"),
               ),
               ElevatedButton(
