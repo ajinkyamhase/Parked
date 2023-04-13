@@ -18,6 +18,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:rider_app/timer.dart';
 import 'Diya_timer.dart';
+import 'SlotBooking.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
