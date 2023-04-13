@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
-import 'Diya_timer.dart';
 class MyButtons extends StatefulWidget {
   @override
   _MyButtonsState createState() => _MyButtonsState();
@@ -120,18 +119,11 @@ class _MyButtonsState extends State<MyButtons> {
               width: 150,
               height: 70,
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => TimerScreenS()),
-                  );
-                },
+                onPressed: () => _onSubmitPressed(),
                 style: ElevatedButton.styleFrom(
                   primary:Colors.indigo,
                 ),
-
                 child: Text('Confirm Slot'),
-
               ),
             ),
           ],
