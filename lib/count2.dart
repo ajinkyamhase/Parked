@@ -14,16 +14,43 @@ class CountdownTimerDemo extends StatefulWidget {
 
 class _CountdownTimerDemoState extends State<CountdownTimerDemo> {
   bool On=false;
+  bool x= false;
   Timer? countdownTimer;
   Duration myDuration = Duration(seconds: timeDiff);
   final dbR = FirebaseDatabase.instance.reference();
   @override
   void initState() {
-    startTimer();
+    //startState();
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      TimeOfDay currentTime = TimeOfDay.now();
+      nowTimeInt = (currentTime.hour * 60 + currentTime.minute) * 60;
+      print("Loop");
+      if (nowTimeInt >= startTimeInt) {
+        finaltimeDiff = endTimeInt - nowTimeInt ;
+        startTimer();
+        print("started timer");
+        timer.cancel();
+      }
+    });
+
+
     super.initState();
   }
-
+  void startState() {
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      TimeOfDay currentTime= TimeOfDay.now();
+      nowTimeInt = (currentTime.hour * 60 + currentTime.minute) * 60;
+      if(nowTimeInt>=startTimeInt){
+        startTimer();
+      }
+      if(nowTimeInt<=startTimeInt){
+        finaltimeDiff = endTimeInt - nowTimeInt;
+      }
+    });
+  }
   void startTimer() {
+    x= true;
+    print("x set true");
     countdownTimer =
         Timer.periodic(Duration(seconds: 1), (_) => setCountDown());
   }
@@ -75,6 +102,12 @@ class _CountdownTimerDemoState extends State<CountdownTimerDemo> {
       SizedBox(width: 10,),
       ElevatedButton(
         onPressed: () {
+          bool result;
+          TimeOfDay currentTime= TimeOfDay.now();
+          int currentTimeInt = (currentTime.hour * 60 + currentTime.minute) * 60;
+          //print(startTimeInt);
+          //print(endTimeInt);
+          print(finaltimeDiff);
           if(currentTimeInt>=startTimeInt){
             if(currentTimeInt<=endTimeInt){
               dbR.child("Light").set({"Switch":!On});
