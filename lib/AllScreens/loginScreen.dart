@@ -6,6 +6,7 @@ import 'package:rider_app/AllScreens/mainscreen.dart';
 import 'package:rider_app/AllScreens/registerationScreen.dart';
 import 'package:rider_app/Allwidgets/progressDialog.dart';
 import 'package:rider_app/Diya_timer.dart';
+import 'package:rider_app/SlotBooking.dart';
 import 'package:rider_app/main.dart';
 class LoginScreen extends StatelessWidget {
   static const String idScreen ="login";
@@ -144,7 +145,7 @@ class LoginScreen extends StatelessWidget {
       userRef.child(firebaseUser.uid).once().then((DataSnapshot){
         if(DataSnapshot!=null)
           {
-            Navigator.pushNamedAndRemoveUntil(context, TimerScreenS.idScreen, (route) => false);
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyButtons()));
             displayToastMessage("Login Successful", context);
           }
         else

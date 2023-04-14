@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:rider_app/Diya_timer.dart';
 import 'main.dart';
 class MyButtons extends StatefulWidget {
+  static const String idScreen ="Booking";
   @override
   _MyButtonsState createState() => _MyButtonsState();
 }
 
 class _MyButtonsState extends State<MyButtons> {
-  static const String idScreen ="Booking";
+
   int selectedButtonIndex = -1; // initialize with -1, which means no button is selected
 
   void _onButtonPressed(int index) {
@@ -119,7 +121,7 @@ class _MyButtonsState extends State<MyButtons> {
               width: 150,
               height: 70,
               child: ElevatedButton(
-                onPressed: () => _onSubmitPressed(),
+                onPressed: () => Navigator.pushNamedAndRemoveUntil(context, TimerScreenS.idScreen, (route) => false),
                 style: ElevatedButton.styleFrom(
                   primary:Colors.indigo,
                 ),

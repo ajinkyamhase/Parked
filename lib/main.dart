@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         TimerScreen.idScreen:(Context)=>TimerScreen(),
         MyHomePage.idScreen:(Context)=>MyHomePage(title: 'MyHomePage',),
         TimerScreenS.idScreen:(Context)=>TimerScreenS(),
-
+        MyButtons.idScreen:(Context)=>MyButtons()
       },
       debugShowCheckedModeBanner: false,
     );
