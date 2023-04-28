@@ -1,4 +1,5 @@
 import 'dart:core';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:time_range_picker/time_range_picker.dart';
 import 'package:flutter/cupertino.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
@@ -20,6 +21,10 @@ import 'dart:async';
 import 'package:rider_app/Allwidgets/Divider.dart';
 
 class TimerScreenS extends StatefulWidget {
+  bool Pn=true;
+
+  // ignore: deprecated_member_use
+  final dbR = FirebaseDatabase.instance.reference();
   static const String idScreen = "register";
 
   @override
@@ -27,6 +32,10 @@ class TimerScreenS extends StatefulWidget {
 }
 
 class _TimerScreenState extends State<TimerScreenS> {
+  bool Pn=true;
+
+  // ignore: deprecated_member_use
+  final dbR = FirebaseDatabase.instance.reference();
   GlobalKey<ScaffoldState> scaffoldkey = new GlobalKey<ScaffoldState>();
 
 
@@ -166,6 +175,10 @@ class _TimerScreenState extends State<TimerScreenS> {
               ),
               ElevatedButton(
                   onPressed:(){
+                    dbR.child("P4").set({"Slot4":!Pn});
+                    setState((){
+                      Pn= !Pn;
+                    });
                     print("pressed");
                     Navigator.pushNamedAndRemoveUntil(
                         context, LoginScreen.idScreen, (route) => false);

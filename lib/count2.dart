@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rider_app/variables.dart';
+import 'AllScreens/loginScreen.dart';
 import 'Diya_timer.dart';
 
 class CountdownTimerDemo extends StatefulWidget {
@@ -115,6 +116,14 @@ class _CountdownTimerDemoState extends State<CountdownTimerDemo> {
                 On= !On;
               });
             }
+          }
+          else{
+            dbR.child("P4").set({"Slot4":!On});
+            setState((){
+              On= !On;
+            });
+            Navigator.pushNamedAndRemoveUntil(
+                context, LoginScreen.idScreen, (route) => false);
           }
         },
         child: Text(

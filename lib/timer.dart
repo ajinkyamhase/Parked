@@ -141,7 +141,6 @@ class _TimerScreenState extends State<TimerScreen> {
                       dbR.child("Light").set({"Switch":!On});
                       setState((){
                         On= !On;
-
                       });
 
                     }

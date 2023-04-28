@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:rider_app/Diya_timer.dart';
 import 'main.dart';
@@ -8,6 +9,10 @@ class MyButtons extends StatefulWidget {
 }
 
 class _MyButtonsState extends State<MyButtons> {
+  bool On=false;
+
+  // ignore: deprecated_member_use
+  final dbR = FirebaseDatabase.instance.reference();
 
   int selectedButtonIndex = -1; // initialize with -1, which means no button is selected
 
@@ -43,7 +48,9 @@ class _MyButtonsState extends State<MyButtons> {
                   width: 100,
                   height: 200,
                   child: ElevatedButton(
-                    onPressed: () => _onButtonPressed(0),
+                    onPressed: (){
+                      _onButtonPressed(0);
+                    },
                     child: Text('Slot 1'),
                     style: selectedButtonIndex == 0
                         ? ElevatedButton.styleFrom(primary: Colors.green)
@@ -54,7 +61,9 @@ class _MyButtonsState extends State<MyButtons> {
                   width: 100,
                   height: 200,
                   child: ElevatedButton(
-                    onPressed: () => _onButtonPressed(1),
+                    onPressed: (){
+                      _onButtonPressed(1);
+                    },
                     child: Text('Slot 2'),
                     style: selectedButtonIndex == 1
                         ? ElevatedButton.styleFrom(primary: Colors.green)
@@ -65,7 +74,9 @@ class _MyButtonsState extends State<MyButtons> {
                   width: 100,
                   height: 200,
                   child: ElevatedButton(
-                    onPressed: () => _onButtonPressed(2),
+                    onPressed: (){
+                      _onButtonPressed(2);
+                    },
                     child: Text('Slot 3'),
                     style: selectedButtonIndex == 2
                         ? ElevatedButton.styleFrom(primary: Colors.green)
@@ -85,7 +96,10 @@ class _MyButtonsState extends State<MyButtons> {
                   width: 100,
                   height: 200,
                   child: ElevatedButton(
-                    onPressed: () => _onButtonPressed(3),
+                    onPressed: (){
+                      _onButtonPressed(3);
+                      print(selectedButtonIndex);
+                    },
                     child: Text('Slot 4'),
                     style: selectedButtonIndex == 3
                         ? ElevatedButton.styleFrom(primary: Colors.green)
@@ -96,7 +110,9 @@ class _MyButtonsState extends State<MyButtons> {
                   width: 100,
                   height: 200,
                   child: ElevatedButton(
-                    onPressed: () => _onButtonPressed(4),
+                    onPressed: (){
+                      _onButtonPressed(4);
+                    },
                     child: Text('Slot 5'),
                     style: selectedButtonIndex == 4
                         ? ElevatedButton.styleFrom(primary: Colors.green)
@@ -107,7 +123,9 @@ class _MyButtonsState extends State<MyButtons> {
                   width: 100,
                   height: 200,
                   child: ElevatedButton(
-                    onPressed: () => _onButtonPressed(5),
+                    onPressed: (){
+                      _onButtonPressed(5);
+                    },
                     child: Text('Slot 6'),
                     style: selectedButtonIndex == 5
                         ? ElevatedButton.styleFrom(primary: Colors.green)
@@ -121,7 +139,23 @@ class _MyButtonsState extends State<MyButtons> {
               width: 150,
               height: 70,
               child: ElevatedButton(
-                onPressed: () => Navigator.pushNamedAndRemoveUntil(context, TimerScreenS.idScreen, (route) => false),
+                onPressed: (){
+                  if (selectedButtonIndex == -1) {
+                    print('Please select a slot');
+                  }
+                  if (selectedButtonIndex == 3) {
+                    dbR.child("P4").set({"Slot4":!On});
+                    setState((){
+                      On= !On;
+                    });
+                    print('Please select a slot');
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, TimerScreenS.idScreen, (route) => false);
+                  }
+                  else {
+                    print('Please select a slot');
+                  }
+                },
                 style: ElevatedButton.styleFrom(
                   primary:Colors.indigo,
                 ),
