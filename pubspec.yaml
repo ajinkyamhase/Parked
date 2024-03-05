@@ -45,7 +45,7 @@ dependencies:
   simple_time_range_picker: ^0.0.5
   time_range_picker: ^2.2.0
 
-  crypt: ^1.0.7
+  crypt: 4.3.1
 
 dev_dependencies:
   flutter_test:

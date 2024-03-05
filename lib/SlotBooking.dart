@@ -53,8 +53,8 @@ class _MyButtonsState extends State<MyButtons> {
                     },
                     child: Text('Slot 1'),
                     style: selectedButtonIndex == 0
-                        ? ElevatedButton.styleFrom(primary: Colors.green)
-                        : ElevatedButton.styleFrom(primary: Colors.grey),
+                        ? ElevatedButton.styleFrom(backgroundColor: Colors.green)
+                        : ElevatedButton.styleFrom(backgroundColor: Colors.grey),
                   ),
                 ),
                 SizedBox(
@@ -66,8 +66,8 @@ class _MyButtonsState extends State<MyButtons> {
                     },
                     child: Text('Slot 2'),
                     style: selectedButtonIndex == 1
-                        ? ElevatedButton.styleFrom(primary: Colors.green)
-                        : ElevatedButton.styleFrom(primary: Colors.grey),
+                        ? ElevatedButton.styleFrom(backgroundColor: Colors.green)
+                        : ElevatedButton.styleFrom(backgroundColor: Colors.grey),
                   ),
                 ),
                 SizedBox(
@@ -79,8 +79,8 @@ class _MyButtonsState extends State<MyButtons> {
                     },
                     child: Text('Slot 3'),
                     style: selectedButtonIndex == 2
-                        ? ElevatedButton.styleFrom(primary: Colors.green)
-                        : ElevatedButton.styleFrom(primary: Colors.grey),
+                        ? ElevatedButton.styleFrom(backgroundColor: Colors.green)
+                        : ElevatedButton.styleFrom(backgroundColor: Colors.grey),
                   ),
                 ),
               ],
@@ -102,8 +102,8 @@ class _MyButtonsState extends State<MyButtons> {
                     },
                     child: Text('Slot 4'),
                     style: selectedButtonIndex == 3
-                        ? ElevatedButton.styleFrom(primary: Colors.green)
-                        : ElevatedButton.styleFrom(primary: Colors.grey),
+                        ? ElevatedButton.styleFrom(backgroundColor: Colors.green)
+                        : ElevatedButton.styleFrom(backgroundColor: Colors.grey),
                   ),
                 ),
                 SizedBox(
@@ -115,8 +115,8 @@ class _MyButtonsState extends State<MyButtons> {
                     },
                     child: Text('Slot 5'),
                     style: selectedButtonIndex == 4
-                        ? ElevatedButton.styleFrom(primary: Colors.green)
-                        : ElevatedButton.styleFrom(primary: Colors.grey),
+                        ? ElevatedButton.styleFrom(backgroundColor: Colors.green)
+                        : ElevatedButton.styleFrom(backgroundColor: Colors.grey),
                   ),
                 ),
                 SizedBox(
@@ -128,8 +128,8 @@ class _MyButtonsState extends State<MyButtons> {
                     },
                     child: Text('Slot 6'),
                     style: selectedButtonIndex == 5
-                        ? ElevatedButton.styleFrom(primary: Colors.green)
-                        : ElevatedButton.styleFrom(primary: Colors.grey),
+                        ? ElevatedButton.styleFrom(backgroundColor: Colors.green)
+                        : ElevatedButton.styleFrom(backgroundColor: Colors.grey),
                   ),
                 ),
               ],
@@ -157,7 +157,7 @@ class _MyButtonsState extends State<MyButtons> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary:Colors.indigo,
+                  backgroundColor: Colors.indigo,
                 ),
                 child: Text('Confirm Slot'),
               ),
