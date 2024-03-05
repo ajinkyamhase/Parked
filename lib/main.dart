@@ -19,9 +19,13 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:rider_app/timer.dart';
 import 'Diya_timer.dart';
 import 'SlotBooking.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 DatabaseReference userRef = FirebaseDatabase.instance.reference().child("users");
